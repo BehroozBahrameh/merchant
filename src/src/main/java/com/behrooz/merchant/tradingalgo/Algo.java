@@ -1,4 +1,4 @@
-package com.behrooz.merchant.algo;
+package com.behrooz.merchant.tradingalgo;
 
 public class Algo {
     public void doAlgo() {

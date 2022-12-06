@@ -1,4 +1,4 @@
-package com.behrooz.merchant.algo;
+package com.behrooz.merchant.tradingalgo;
 
 public interface SignalHandler {
     void handleSignal(int signal);
