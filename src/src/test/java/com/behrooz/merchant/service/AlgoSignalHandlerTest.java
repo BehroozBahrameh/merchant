@@ -35,7 +35,7 @@ public class AlgoSignalHandlerTest {
     public void handleSignal_SignalCode1_CalledAlgoAppropriately() {
         //Arrange
         int signal = 1;
-        
+
         //Act
         handler.handleSignal(signal);
 
@@ -44,6 +44,11 @@ public class AlgoSignalHandlerTest {
         verify(algo, times(1)).setAlgoParam(isA(Integer.class), isA(Integer.class));
         verify(algo, times(1)).performCalc();
         verify(algo, times(1)).submitToMarket();
+        verify(algo, times(1)).doAlgo();
+
+        verify(algo, times(0)).cancelTrades();
+        verify(algo, times(0)).reverse();
+
         doNothing().when(algo).doAlgo();
     }
 
