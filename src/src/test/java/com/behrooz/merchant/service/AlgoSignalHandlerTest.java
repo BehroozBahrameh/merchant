@@ -45,4 +45,24 @@ public class AlgoSignalHandlerTest {
         verify(algo, times(1)).submitToMarket();
         doNothing().when(algo).doAlgo();
     }
+
+    @Test
+    public void handleSignal_SignalCode2_CalledAlgoAppropriately() {
+        //Arrange
+        int signal = 2;
+        doNothing().when(algo).setUp();
+        doNothing().when(algo).setAlgoParam(isA(Integer.class), isA(Integer.class));
+        doNothing().when(algo).performCalc();
+        doNothing().when(algo).submitToMarket();
+        doNothing().when(algo).doAlgo();
+
+        //Act
+        handler.handleSignal(signal);
+
+        //Assert
+        verify(algo, times(1)).reverse();
+        verify(algo, times(1)).setAlgoParam(isA(Integer.class), isA(Integer.class));
+        verify(algo, times(1)).submitToMarket();
+        doNothing().when(algo).doAlgo();
+    }
 }
