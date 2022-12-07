@@ -48,8 +48,6 @@ public class AlgoSignalHandlerTest {
 
         verify(algo, times(0)).cancelTrades();
         verify(algo, times(0)).reverse();
-
-        doNothing().when(algo).doAlgo();
     }
 
     @Test
@@ -69,7 +67,5 @@ public class AlgoSignalHandlerTest {
         verify(algo, times(0)).setUp();
         verify(algo, times(0)).performCalc();
         verify(algo, times(0)).cancelTrades();
-
-        doNothing().when(algo).doAlgo();
     }
 }
