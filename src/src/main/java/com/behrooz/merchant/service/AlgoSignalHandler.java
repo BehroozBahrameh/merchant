@@ -2,10 +2,16 @@ package com.behrooz.merchant.service;
 
 import com.behrooz.merchant.tradingalgo.Algo;
 import com.behrooz.merchant.tradingalgo.SignalHandler;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AlgoSignalHandler implements SignalHandler {
+
+    @Autowired
+    private Algo algo;
+
     public void handleSignal(int signal) {
-        Algo algo = new Algo();
 
         switch (signal) {
             case 1:
