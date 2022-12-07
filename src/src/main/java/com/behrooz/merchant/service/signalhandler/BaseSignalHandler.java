@@ -6,16 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 public abstract class BaseSignalHandler {
 
     @Autowired
-    private Algo algo;
+    protected Algo algo;
 
-    abstract void process(int signal);
+    abstract void process();
 
     public void commit() {
         algo.doAlgo();
     }
 
-    public void handleSignal(int signal) {
-        process(signal);
+    public void handleSignal() {
+        process();
         commit();
     }
 }

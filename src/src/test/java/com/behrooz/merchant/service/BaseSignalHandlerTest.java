@@ -40,7 +40,7 @@ public class BaseSignalHandlerTest {
     public void handleSignal_WhenCall_CallDoAlgo() {
         //Arrange
         //Act
-        baseSignalHandler.handleSignal(isA(Integer.class));
+        baseSignalHandler.handleSignal();
 
         //Assert
         verify(algo, times(1)).doAlgo();
