@@ -4,10 +4,14 @@ import com.behrooz.merchant.tradingalgo.Algo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.data.util.Pair;
+
+import java.util.stream.IntStream;
 
 import static org.mockito.Mockito.*;
 
@@ -94,5 +98,28 @@ public class AlgoSignalHandlerTest {
 
         verify(algo, times(0)).setUp();
         verify(algo, times(0)).cancelTrades();
+    }
+
+    @ParameterizedTest(name = "handleSignal_UnexpectedSignal'{0}'_CalledAlgoAppropriately")
+    @MethodSource("signalProvider")
+    public void handleSignal_UnexpectedSignal_CalledAlgoAppropriately(int signal) {
+        //Arrange
+        doNothing().when(algo).setAlgoParam(isA(Integer.class), isA(Integer.class));
+
+        //Act
+        handler.handleSignal(signal);
+
+        //Assert
+        verify(algo, times(1)).doAlgo();
+        verify(algo, times(1)).cancelTrades();
+
+        verify(algo, times(0)).setAlgoParam(isA(Integer.class), isA(Integer.class));
+        verify(algo, times(0)).performCalc();
+        verify(algo, times(0)).submitToMarket();
+        verify(algo, times(0)).setUp();
+    }
+
+    static IntStream signalProvider() {
+        return IntStream.rangeClosed(4, 10);
     }
 }
