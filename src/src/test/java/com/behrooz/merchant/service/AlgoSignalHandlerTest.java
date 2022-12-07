@@ -23,18 +23,19 @@ public class AlgoSignalHandlerTest {
     @BeforeEach
     public void init() {
         MockitoAnnotations.initMocks(this);
+
+        doNothing().when(algo).setUp();
+        doNothing().when(algo).setAlgoParam(isA(Integer.class), isA(Integer.class));
+        doNothing().when(algo).performCalc();
+        doNothing().when(algo).submitToMarket();
+        doNothing().when(algo).doAlgo();
     }
 
     @Test
     public void handleSignal_SignalCode1_CalledAlgoAppropriately() {
         //Arrange
         int signal = 1;
-        doNothing().when(algo).setUp();
-        doNothing().when(algo).setAlgoParam(isA(Integer.class), isA(Integer.class));
-        doNothing().when(algo).performCalc();
-        doNothing().when(algo).submitToMarket();
-        doNothing().when(algo).doAlgo();
-
+        
         //Act
         handler.handleSignal(signal);
 
@@ -50,11 +51,6 @@ public class AlgoSignalHandlerTest {
     public void handleSignal_SignalCode2_CalledAlgoAppropriately() {
         //Arrange
         int signal = 2;
-        doNothing().when(algo).setUp();
-        doNothing().when(algo).setAlgoParam(isA(Integer.class), isA(Integer.class));
-        doNothing().when(algo).performCalc();
-        doNothing().when(algo).submitToMarket();
-        doNothing().when(algo).doAlgo();
 
         //Act
         handler.handleSignal(signal);
