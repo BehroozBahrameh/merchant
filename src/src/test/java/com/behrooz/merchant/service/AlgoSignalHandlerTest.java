@@ -1,10 +1,12 @@
 package com.behrooz.merchant.service;
 
 import com.behrooz.merchant.tradingalgo.Algo;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.*;
@@ -17,6 +19,11 @@ public class AlgoSignalHandlerTest {
 
     @InjectMocks
     private AlgoSignalHandler handler;
+
+    @BeforeEach
+    public void init() {
+        MockitoAnnotations.initMocks(this);
+    }
 
     @Test
     public void handleSignal_SignalCode1_CalledAlgoAppropriately() {
