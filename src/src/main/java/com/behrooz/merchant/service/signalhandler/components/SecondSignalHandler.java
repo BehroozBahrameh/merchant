@@ -1,6 +1,9 @@
 package com.behrooz.merchant.service.signalhandler.components;
 
 import org.springframework.data.util.Pair;
+import org.springframework.stereotype.Component;
+
+@Component("signal-processor-2")
 
 public class SecondSignalHandler extends BaseSignalHandler {
 

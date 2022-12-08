@@ -44,4 +44,13 @@ public class SecondSignalHandlerTest {
         verify(algo, times(0)).performCalc();
         verify(algo, times(0)).cancelTrades();
     }
+
+    @Test
+    public void Handler_decoratedByCorrectComponentValue() {
+        //Arrange
+        var value = "signal-processor-2";
+        //Act
+        //Assert
+        Common.Class_decoratedByCorrectComponentValue(SecondSignalHandler.class, value);
+    }
 }
