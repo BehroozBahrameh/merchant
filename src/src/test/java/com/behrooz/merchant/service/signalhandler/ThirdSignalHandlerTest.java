@@ -45,4 +45,13 @@ public class ThirdSignalHandlerTest {
         verify(algo, times(0)).setUp();
         verify(algo, times(0)).cancelTrades();
     }
+
+    @Test
+    public void Handler_decoratedByCorrectComponentValue() {
+        //Arrange
+        var value = "signal-processor-3";
+        //Act
+        //Assert
+        Common.Class_decoratedByCorrectComponentValue(ThirdSignalHandler.class, value);
+    }
 }
