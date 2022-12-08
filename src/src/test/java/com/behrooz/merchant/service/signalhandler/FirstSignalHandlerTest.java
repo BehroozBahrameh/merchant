@@ -8,11 +8,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.data.util.Pair;
-import org.springframework.stereotype.Component;
 
 import static org.mockito.Mockito.*;
 
-@Component("signal-processor-1")
 
 public class FirstSignalHandlerTest {
     @Mock
@@ -53,6 +51,6 @@ public class FirstSignalHandlerTest {
         var value = "signal-processor-1";
         //Act
         //Assert
-        Common.Class_decoratedByCorrectComponentValue(FirstSignalHandlerTest.class, value);
+        Common.Class_decoratedByCorrectComponentValue(FirstSignalHandler.class, value);
     }
 }

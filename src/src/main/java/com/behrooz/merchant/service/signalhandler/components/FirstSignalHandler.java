@@ -1,7 +1,9 @@
 package com.behrooz.merchant.service.signalhandler.components;
 
 import org.springframework.data.util.Pair;
+import org.springframework.stereotype.Component;
 
+@Component("signal-processor-1")
 public class FirstSignalHandler extends BaseSignalHandler {
 
     private static final Pair<Integer, Integer> FIRST_SIGNAL_PARAM = Pair.of(1, 60);
