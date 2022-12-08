@@ -40,4 +40,13 @@ public class DefaultSignalHandlerTest {
         verify(algo, times(0)).submitToMarket();
         verify(algo, times(0)).setUp();
     }
+
+    @Test
+    public void Handler_decoratedByCorrectComponentValue() {
+        //Arrange
+        var value = "signal-processor-default";
+        //Act
+        //Assert
+        Common.Class_decoratedByCorrectComponentValue(DefaultSignalHandler.class, value);
+    }
 }
