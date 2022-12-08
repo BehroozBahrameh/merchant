@@ -35,7 +35,7 @@ public class DefaultSignalHandlerTest {
         verify(algo, times(1)).doAlgo();
         verify(algo, times(1)).cancelTrades();
 
-        verify(algo, times(0)).setAlgoParam(isA(Integer.class), isA(Integer.class));
+        verify(algo, times(0)).setAlgoParam(anyInt(), anyInt());
         verify(algo, times(0)).performCalc();
         verify(algo, times(0)).submitToMarket();
         verify(algo, times(0)).setUp();

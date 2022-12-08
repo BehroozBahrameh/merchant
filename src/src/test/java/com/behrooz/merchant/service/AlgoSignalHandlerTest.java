@@ -30,7 +30,7 @@ public class AlgoSignalHandlerTest {
         handler = Mockito.mock(BaseSignalHandler.class);
 
         Mockito
-                .when(signalHandlerFactory.GetHandler(isA(Integer.class)))
+                .when(signalHandlerFactory.GetHandler(anyInt()))
                 .thenReturn(handler);
     }
 

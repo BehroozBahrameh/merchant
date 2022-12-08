@@ -34,7 +34,7 @@ public class SecondSignalHandlerTest {
         signalHandler.handleSignal();
 
         //Assert
-        verify(algo, times(1)).setAlgoParam(isA(Integer.class), isA(Integer.class));
+        verify(algo, times(1)).setAlgoParam(anyInt(), anyInt());
         verify(algo, times(1)).setAlgoParam(param.getFirst(), param.getSecond());
         verify(algo, times(1)).reverse();
         verify(algo, times(1)).submitToMarket();

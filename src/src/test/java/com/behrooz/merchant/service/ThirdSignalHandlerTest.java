@@ -9,7 +9,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.data.util.Pair;
 
-import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.*;
 
 public class ThirdSignalHandlerTest {
@@ -36,7 +35,7 @@ public class ThirdSignalHandlerTest {
         signalHandler.handleSignal();
 
         //Assert
-        verify(algo, times(2)).setAlgoParam(isA(Integer.class), isA(Integer.class));
+        verify(algo, times(2)).setAlgoParam(anyInt(), anyInt());
         verify(algo, times(1)).setAlgoParam(firstParam.getFirst(), firstParam.getSecond());
         verify(algo, times(1)).setAlgoParam(secondParam.getFirst(), secondParam.getSecond());
         verify(algo, times(1)).performCalc();
