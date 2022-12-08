@@ -1,17 +1,15 @@
 package com.behrooz.merchant.service;
 
+import com.behrooz.merchant.service.signalhandler.BaseSignalHandler;
+import com.behrooz.merchant.service.signalhandler.SignalHandlerFactory;
 import com.behrooz.merchant.tradingalgo.Algo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.springframework.data.util.Pair;
-
-import java.util.stream.IntStream;
 
 import static org.mockito.Mockito.*;
 
@@ -19,107 +17,34 @@ import static org.mockito.Mockito.*;
 public class AlgoSignalHandlerTest {
 
     @Mock
-    private Algo algo;
+    private SignalHandlerFactory signalHandlerFactory;
 
     @InjectMocks
-    private AlgoSignalHandler handler;
+    private AlgoSignalHandler algoSignalHandler;
+
+    BaseSignalHandler handler;
 
     @BeforeEach
     public void init() {
         MockitoAnnotations.initMocks(this);
 
-        doNothing().when(algo).setUp();
-        doNothing().when(algo).performCalc();
-        doNothing().when(algo).submitToMarket();
-        doNothing().when(algo).doAlgo();
+        handler = Mockito.mock(BaseSignalHandler.class);
+
+        Mockito
+                .when(signalHandlerFactory.GetHandler(isA(Integer.class)))
+                .thenReturn(handler);
     }
 
     @Test
-    public void handleSignal_SignalCode1_CalledAlgoAppropriately() {
+    public void handleSignal_Signal_GetHandlerAndCallIt() {
         //Arrange
-        int signal = 1;
-        var param = Pair.of(1, 60);
-        doNothing().when(algo).setAlgoParam(param.getFirst(), param.getSecond());
-
+        var signal = anyInt();
         //Act
-        handler.handleSignal(signal);
+        algoSignalHandler.handleSignal(signal);
 
         //Assert
-        verify(algo, times(1)).setAlgoParam(param.getFirst(), param.getSecond());
-        verify(algo, times(1)).setUp();
-        verify(algo, times(1)).performCalc();
-        verify(algo, times(1)).submitToMarket();
-        verify(algo, times(1)).doAlgo();
-
-        verify(algo, times(0)).cancelTrades();
-        verify(algo, times(0)).reverse();
-    }
-
-    @Test
-    public void handleSignal_SignalCode2_CalledAlgoAppropriately() {
-        //Arrange
-        int signal = 2;
-        var param = Pair.of(1, 80);
-        doNothing().when(algo).setAlgoParam(param.getFirst(), param.getSecond());
-
-        //Act
-        handler.handleSignal(signal);
-
-        //Assert
-        verify(algo, times(1)).setAlgoParam(param.getFirst(), param.getSecond());
-        verify(algo, times(1)).reverse();
-        verify(algo, times(1)).submitToMarket();
-        verify(algo, times(1)).doAlgo();
-
-        verify(algo, times(0)).setUp();
-        verify(algo, times(0)).performCalc();
-        verify(algo, times(0)).cancelTrades();
-    }
-
-    @Test
-    public void handleSignal_SignalCode3_CalledAlgoAppropriately() {
-        //Arrange
-        int signal = 3;
-        var firstParam = Pair.of(1, 90);
-        var secondParam = Pair.of(2, 15);
-
-        doNothing().when(algo).setAlgoParam(firstParam.getFirst(), firstParam.getSecond());
-        doNothing().when(algo).setAlgoParam(secondParam.getFirst(), secondParam.getSecond());
-
-        //Act
-        handler.handleSignal(signal);
-
-        //Assert
-        verify(algo, times(1)).setAlgoParam(firstParam.getFirst(), firstParam.getSecond());
-        verify(algo, times(1)).setAlgoParam(secondParam.getFirst(), secondParam.getSecond());
-        verify(algo, times(1)).performCalc();
-        verify(algo, times(1)).submitToMarket();
-        verify(algo, times(1)).doAlgo();
-
-        verify(algo, times(0)).setUp();
-        verify(algo, times(0)).cancelTrades();
-    }
-
-    @ParameterizedTest(name = "handleSignal_UnexpectedSignal'{0}'_CalledAlgoAppropriately")
-    @MethodSource("signalProvider")
-    public void handleSignal_UnexpectedSignal_CalledAlgoAppropriately(int signal) {
-        //Arrange
-        doNothing().when(algo).setAlgoParam(isA(Integer.class), isA(Integer.class));
-
-        //Act
-        handler.handleSignal(signal);
-
-        //Assert
-        verify(algo, times(1)).doAlgo();
-        verify(algo, times(1)).cancelTrades();
-
-        verify(algo, times(0)).setAlgoParam(isA(Integer.class), isA(Integer.class));
-        verify(algo, times(0)).performCalc();
-        verify(algo, times(0)).submitToMarket();
-        verify(algo, times(0)).setUp();
-    }
-
-    static IntStream signalProvider() {
-        return IntStream.rangeClosed(4, 10);
+        verify(signalHandlerFactory, times(1)).GetHandler(anyInt());
+        verify(signalHandlerFactory, times(1)).GetHandler(signal);
+        verify(handler, times(1)).handleSignal();
     }
 }
