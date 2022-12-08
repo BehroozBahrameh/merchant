@@ -1,6 +1,10 @@
 package com.behrooz.merchant.service;
 
 import com.behrooz.merchant.service.signalhandler.*;
+import com.behrooz.merchant.service.signalhandler.components.DefaultSignalHandler;
+import com.behrooz.merchant.service.signalhandler.components.FirstSignalHandler;
+import com.behrooz.merchant.service.signalhandler.components.SecondSignalHandler;
+import com.behrooz.merchant.service.signalhandler.components.ThirdSignalHandler;
 import com.behrooz.merchant.tradingalgo.Algo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;

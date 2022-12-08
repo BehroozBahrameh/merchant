@@ -1,4 +1,4 @@
-package com.behrooz.merchant.service.signalhandler;
+package com.behrooz.merchant.service.signalhandler.components;
 
 import org.springframework.data.util.Pair;
 

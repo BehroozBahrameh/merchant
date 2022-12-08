@@ -1,13 +1,11 @@
 package com.behrooz.merchant.service;
 
-import com.behrooz.merchant.service.signalhandler.BaseSignalHandler;
-import com.behrooz.merchant.service.signalhandler.FirstSignalHandler;
+import com.behrooz.merchant.service.signalhandler.components.FirstSignalHandler;
 import com.behrooz.merchant.tradingalgo.Algo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.data.util.Pair;
 

@@ -1,4 +1,4 @@
-package com.behrooz.merchant.service.signalhandler;
+package com.behrooz.merchant.service.signalhandler.components;
 
 import com.behrooz.merchant.tradingalgo.Algo;
 import org.springframework.beans.factory.annotation.Autowired;
