@@ -1,4 +1,4 @@
-package com.behrooz.merchant.service;
+package com.behrooz.merchant.service.signalhandler;
 
 import com.behrooz.merchant.service.signalhandler.components.ThirdSignalHandler;
 import com.behrooz.merchant.tradingalgo.Algo;

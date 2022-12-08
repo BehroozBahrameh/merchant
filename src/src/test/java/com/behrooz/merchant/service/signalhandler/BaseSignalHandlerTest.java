@@ -1,4 +1,4 @@
-package com.behrooz.merchant.service;
+package com.behrooz.merchant.service.signalhandler;
 
 import com.behrooz.merchant.service.signalhandler.components.BaseSignalHandler;
 import com.behrooz.merchant.tradingalgo.Algo;
@@ -8,7 +8,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.stereotype.Component;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 public class BaseSignalHandlerTest {
